@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_utlis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mealjnei <mealjnei@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mealjnei <mealjnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 17:39:50 by mealjnei          #+#    #+#             */
-/*   Updated: 2022/07/12 16:03:52 by mealjnei         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:16:38 by mealjnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,26 @@ int	ft_putstr(char *str)
 	return (i);
 }
 
-int ft_putchar(char c)
+int ft_putchar(int c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-int ft_putnbr(int n)
+int ft_putnbr(int m)
 {
-	int     i;
+	int		i;
+	long	n;
 
 	i = 0;
-	if (n == -2147483648)
+	n = (long)m;
+	if (n < 0)
 	{
-		// ft_putstr("\n");
-		i += ft_putstr("-2147483648");
-	}
-	else if (n < 0)
-	{
-		i += ft_putchar('-');
+		ft_putchar('-');
+		i++;
 		n *= -1;
 	}
-	if (n >= 10)
+	if (n > 9)
 	{
 		i += ft_putnbr(n / 10);
 		i += ft_putchar(n % 10 + '0');
@@ -56,8 +54,7 @@ int ft_putnbr(int n)
 	return (i);
 }
 
-
-int ft_putnbr_un(int n)
+int ft_putnbr_un(unsigned int n)
 {
 	int     i;
 	long	m;
@@ -74,25 +71,23 @@ int ft_putnbr_un(int n)
 	return (i);
 }
 
-int	ft_puthex(unsigned long long nbr, char c)
+void	ft_puthex(unsigned long nbr, char c, int *i)
 {
 	char	*b;
-	int		i;
 
-	i = 0;
 	b = "0123456789abcdef";
 	if (c == 'X')
 		b = "0123456789ABCDEF";
 	if (c == 'p')
 	{
-		i += write(1, "0x", 2);
+		*i += ft_putstr("0x");
 		if (nbr == 0)
 		{
-			i += write(1, "0" , 1);
-			return (i);
+			*i += ft_putchar('0');
+			return ;
 		}
 	}
 	if (nbr > 15)
-		i += ft_puthex(b[nbr / 16], c);
-	i += ft_putchar(b[nbr % 16]);
+		ft_puthex(nbr / 16, c, i);
+	*i += ft_putchar(b[nbr % 16]);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mealjnei <mealjnei@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mealjnei <mealjnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:37:56 by mealjnei          #+#    #+#             */
-/*   Updated: 2022/07/12 15:46:36 by mealjnei         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:14:30 by mealjnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 int	ft_printf(const char *str, ...);
 int	ft_putstr(char *str);
-int ft_putchar(char c);
+int ft_putchar(int c);
 int ft_putnbr(int n);
-int ft_putnbr_un(int n);
+int ft_putnbr_un(unsigned int n);
 int p_check(va_list m, char c);
-int ft_puthex(unsigned long long nbr, char c);
+void	ft_puthex(unsigned long nbr, char c, int *i);
 
 #endif

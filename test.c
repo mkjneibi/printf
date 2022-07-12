@@ -2,29 +2,32 @@
 #include <stdio.h>
 #include "printf.h"
 #include <unistd.h>
-int test(char *str, ...)
-{
-    va_list arg;
-    int i = 0;
-    va_start(arg, str);
 
-    while(str[i])
-    {
-        if(str[i] == '$')
-        {
-            if (str[i + 1] == 's')
-            {
-                ft_putstr(va_arg(arg, char *));
-                i++;
-            }
-            i++;
-        }
-        write(1, &str[i], 1);
-        i++;
-    }
+
+int ft_putchar(int c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+
+int ft_putnbr_un(unsigned int n)
+{
+	int     i;
+	long	m;
+
+	i = 0;
+	m = (long)n;
+	if (m > 9)
+	{
+		i += ft_putnbr_un(m / 10);
+		i += ft_putchar(m % 10 + '0');
+	}
+	else
+		i += ft_putchar(m + '0');
+	return (i);
 }
 
 int main()
 {
-    test("test $s $s\n","hello", "meera" );
+   printf("here is the digit %d\n",ft_putnbr_un(-1));
 }
