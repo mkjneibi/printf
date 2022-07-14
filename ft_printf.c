@@ -6,7 +6,7 @@
 /*   By: mealjnei <mealjnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 15:41:40 by mealjnei          #+#    #+#             */
-/*   Updated: 2022/07/14 15:26:21 by mealjnei         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:47:48 by mealjnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	ft_printf(const char *str, ...)
 			j += write(1, &str[i], 1);
 		i++;
 	}
+	va_end(m);
 	return (j);
 }
 
