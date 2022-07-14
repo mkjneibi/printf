@@ -6,7 +6,7 @@
 /*   By: mealjnei <mealjnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 17:39:50 by mealjnei          #+#    #+#             */
-/*   Updated: 2022/07/12 17:16:38 by mealjnei         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:27:35 by mealjnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int	ft_putstr(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
+	if (!str)
+		return (ft_putstr("(null)"));
 	while (str[i])
 	{
 		write(1, &str[i], 1);
@@ -25,13 +27,13 @@ int	ft_putstr(char *str)
 	return (i);
 }
 
-int ft_putchar(int c)
+int	ft_putchar(int c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-int ft_putnbr(int m)
+int	ft_putnbr(int m)
 {
 	int		i;
 	long	n;
@@ -54,9 +56,9 @@ int ft_putnbr(int m)
 	return (i);
 }
 
-int ft_putnbr_un(unsigned int n)
+int	ft_putnbr_un(unsigned int n)
 {
-	int     i;
+	int		i;
 	long	m;
 
 	i = 0;
@@ -71,14 +73,14 @@ int ft_putnbr_un(unsigned int n)
 	return (i);
 }
 
-void	ft_puthex(unsigned long nbr, char c, int *i)
+void	ft_puthex(unsigned long long nbr, char c, int *i)
 {
 	char	*b;
 
 	b = "0123456789abcdef";
 	if (c == 'X')
 		b = "0123456789ABCDEF";
-	if (c == 'p')
+	if (c == 'p' && !*i)
 	{
 		*i += ft_putstr("0x");
 		if (nbr == 0)
